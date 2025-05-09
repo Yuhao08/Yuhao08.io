@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Gioco: Clicca il Pulsante!</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+    #game-area {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      border: 2px solid #333;
+      background-color: #fff;
+      overflow: hidden;
+      margin: auto;
+    }
+    #target-button {
+      position: absolute;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    #score {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Gioco: Clicca il Pulsante!</h1>
+  <div id="score">Punteggio: 0</div>
+  <div id="game-area">
+    <button id="target-button">Cliccami!</button>
+  </div>
+
+  <script>
+    const button = document.getElementById('target-button');
+    const gameArea = document.getElementById('game-area');
+    const scoreDisplay = document.getElementById('score');
+    let score = 0;
+
+    function moveButton() {
+      const areaWidth = gameArea.clientWidth;
+      const areaHeight = gameArea.clientHeight;
+      const btnWidth = button.offsetWidth;
+      const btnHeight = button.offsetHeight;
+
+      const maxX = areaWidth - btnWidth;
+      const maxY = areaHeight - btnHeight;
+
+      const randX = Math.floor(Math.random() * maxX);
+      const randY = Math.floor(Math.random() * maxY);
+
+      button.style.left = randX + 'px';
+      button.style.top = randY + 'px';
+    }
+
+    button.addEventListener('click', () => {
+      score++;
+      scoreDisplay.textContent = 'Punteggio: ' + score;
+      moveButton();
+    });
+
+    // Inizializza posizione del bottone
+    moveButton();
+  </script>
+
+</body>
+</html>
